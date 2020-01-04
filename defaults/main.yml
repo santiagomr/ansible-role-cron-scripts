@@ -1,0 +1,15 @@
+---
+# defaults file for cron_scripts
+
+cron_scripts_list: []
+  # - src: example.sh.j2
+  #   dest: /var/scripts/example.sh
+  #   owner: root
+  #   group: root
+  #   mode: 0500
+  #   # minute: "*"
+  #   # hour: "*"
+  #   # day: "*"
+  #   # weekday: "*"
+  #   # month: "*"
+  #   special_time: daily # annually, daily, hourly, monthly, reboot, weekly, yearly

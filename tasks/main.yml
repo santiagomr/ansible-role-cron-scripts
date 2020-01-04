@@ -1,0 +1,29 @@
+---
+# tasks file for cron_scripts
+
+- name: Copy script files to server
+  template:
+    backup: yes
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  with_items: "{{ cron_scripts_list }}"
+
+- name: Add entries to crontab
+  cron:
+    backup: yes
+    job: "bash {{ item.dest }}"
+    hour: "{{ item.hour | default(omit) }}"
+    minute: "{{ item.minute | default(omit) }}"
+    day: "{{ item.day | default(omit) }}"
+    month: "{{ item.month | default(omit) }}"
+    weekday: "{{ item.weekday | default(omit) }}"
+    special_time: "{{ item.special_time | default(omit) }}"
+    state: present
+    # cron_file: "foo"
+    # disabled: no
+    # reboot: no
+    # user: root   # The specific user whose crontab should be modified
+  with_items: "{{ cron_scripts_list }}"
