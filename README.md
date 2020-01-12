@@ -1,38 +1,65 @@
-Role Name
+Ansible role cron_scripts
 =========
 
-A brief description of the role goes here.
+Ansible role to automate the loading and scheduled execution of scripts.
+
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ansible >= 2.7
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```yaml
+  - name: example.sh                # Optional
+    state: present                  # Optional
+    src: example.sh.j2
+    dest: /var/scripts/example.sh
+    owner: root
+    group: root
+    mode: 0500
+    special_time: daily             # Optional - annually, daily, hourly, monthly, reboot, weekly, yearly
+    # minute: "*"                   # Optional
+    # hour: "*"                     # Optional
+    # day: "*"                      # Optional
+    # weekday: "*"                  # Optional
+    # month: "*"                    # Optional
+    # cron_file: example            # Optional
+    # disabled: no                  # Optional
+    # reboot: no                    # Optional
+```
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No dependencies
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+- hosts: servers
+  roles:
+    - role: cron_scripts
+      vars:
+        cron_scripts_list:
+          - name: example.sh
+            src: example.sh.j2
+            dest: /var/scripts/example.sh
+            owner: root
+            group: root
+            mode: 500
+            special_time: daily
+```
 
 License
 -------
 
-BSD
+GPL-v3
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+[@santiagomr](https://github.com/santiagomr)
