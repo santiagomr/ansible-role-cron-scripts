@@ -1,6 +1,12 @@
 ---
 # tasks file for cron_scripts
 
+- name: Ensure cron is installed
+  apt:
+    name: cron
+    state: present
+    update_cache: yes
+
 - name: Copy script files to server
   template:
     backup: yes
@@ -11,19 +17,20 @@
     mode: "{{ item.mode }}"
   with_items: "{{ cron_scripts_list }}"
 
-- name: Add entries to crontab
+- name: Update entries to crontab
   cron:
     backup: yes
-    job: "bash {{ item.dest }}"
+    name: "{{ item.name | default(item.dest) }}"
+    job: "{{ item.dest }}"
+    user: "{{ item.owner | default(omit) }}" # The specific user whose crontab should be modified
+    state: "{{ item.state | default(omit) }}"
     hour: "{{ item.hour | default(omit) }}"
     minute: "{{ item.minute | default(omit) }}"
     day: "{{ item.day | default(omit) }}"
     month: "{{ item.month | default(omit) }}"
     weekday: "{{ item.weekday | default(omit) }}"
     special_time: "{{ item.special_time | default(omit) }}"
-    state: present
-    # cron_file: "foo"
-    # disabled: no
-    # reboot: no
-    # user: root   # The specific user whose crontab should be modified
+    cron_file: "{{ item.cron_file | default(omit) }}"
+    disabled: "{{ item.disabled | default(omit) }}"
+    reboot: "{{ item.reboot | default(omit) }}"
   with_items: "{{ cron_scripts_list }}"

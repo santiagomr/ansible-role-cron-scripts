@@ -2,14 +2,19 @@
 # defaults file for cron_scripts
 
 cron_scripts_list: []
-  # - src: example.sh.j2
+  # - name: example.sh                # Optional
+  #   state: present                  # Optional
+  #   src: example.sh.j2
   #   dest: /var/scripts/example.sh
   #   owner: root
   #   group: root
   #   mode: 0500
-  #   # minute: "*"
-  #   # hour: "*"
-  #   # day: "*"
-  #   # weekday: "*"
-  #   # month: "*"
-  #   special_time: daily # annually, daily, hourly, monthly, reboot, weekly, yearly
+  #   special_time: daily             # Optional - annually, daily, hourly, monthly, reboot, weekly, yearly
+  #   # minute: "*"                   # Optional
+  #   # hour: "*"                     # Optional
+  #   # day: "*"                      # Optional
+  #   # weekday: "*"                  # Optional
+  #   # month: "*"                    # Optional
+  #   # cron_file: example            # Optional
+  #   # disabled: no                  # Optional
+  #   # reboot: no                    # Optional
