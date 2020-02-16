@@ -1,0 +1,28 @@
+---
+- name: Converge
+  hosts: all
+
+  pre_tasks:
+    - name: Ensure example directory exists
+      file:
+        path: /var/scripts
+        state: directory
+
+  roles:
+    - role: cron_scripts
+      vars:
+        cron_scripts_list:
+          - name: example.sh
+            src: example.sh.j2
+            dest: /var/scripts/example.sh
+            owner: root
+            group: root
+            mode: 500
+            special_time: daily
+          - src: example.sh.j2
+            dest: /var/scripts/daemon.sh
+            owner: daemon
+            group: daemon
+            mode: 500
+            minute: 14
+            hour: 3
