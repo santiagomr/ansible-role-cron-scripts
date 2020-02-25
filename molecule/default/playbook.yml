@@ -9,7 +9,7 @@
         state: directory
 
   roles:
-    - role: cron_scripts
+    - role: santiagomr.cron_scripts
       vars:
         cron_scripts_list:
           - name: example.sh
