@@ -1,7 +1,7 @@
-Ansible role cron_scripts 
+Ansible role cron_scripts
 =========
 
-[![Build Status](https://travis-ci.org/santiagomr/ansible-role-cron-scripts.svg?branch=master)](https://travis-ci.org/santiagomr/ansible-role-cron-scripts)
+[![Build Status](https://travis-ci.com/santiagomr/ansible-role-cron-scripts.svg?branch=master)](https://travis-ci.com/github/santiagomr/ansible-role-cron-scripts)
 [![Galaxy](https://img.shields.io/badge/galaxy-santiagomr.cron_scripts-blue.svg)](https://galaxy.ansible.com/santiagomr/cron_scripts)
 
 Ansible role to automate the loading and scheduled execution of scripts.

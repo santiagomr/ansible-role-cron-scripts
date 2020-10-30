@@ -7,6 +7,7 @@
       file:
         path: /var/scripts
         state: directory
+        mode: 0755
 
   roles:
     - role: santiagomr.cron_scripts
